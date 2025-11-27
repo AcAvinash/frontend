@@ -1,0 +1,6 @@
+# metadata of our application
+apiVersion: v2
+name: frontend
+version: 0.0.1 # This is the chart version
+description: This is the helm chart of backend for expense project
+appVersion: "v1" #this version belongs to application
