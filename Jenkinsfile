@@ -2,7 +2,7 @@
 @Library('expense-shared-library') _
 
 def configMap = [
-    application: "nodeJSVM",
+    application: "nodeFREKS",
     component: "frontend"
 ]
 
