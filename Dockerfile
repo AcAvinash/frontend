@@ -9,7 +9,7 @@ RUN rm -rf /usr/share/nginx/html/* \
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # 4️ Copy frontend static files
-COPY code /usr/share/nginx/html/
+COPY . /usr/share/nginx/html/
 
 # 5️ Expose port 80
 EXPOSE 80
