@@ -86,7 +86,7 @@ data:
         }
         # this is as part of nginx configmap
         location /api/ { 
-            proxy_pass http://backend:8080/;
+            proxy_pass http://172.31.24.31:8080/;
         }
 
         }
