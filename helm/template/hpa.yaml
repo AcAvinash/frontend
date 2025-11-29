@@ -1,46 +1,19 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
 metadata:
-  name: frontend
+  name: web
   namespace: expense
-  labels:
-    app: frontend
-    tier: web
-    project: expense
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: frontend
-      tier: web
-      project: expense
-  template:
-    metadata:
-      labels:
-        app: frontend
-        tier: web
-        project: expense
-    spec:
-      containers:
-      - name: frontend
-        image: acavinash/frontend:{{ .Values.deployment.imageVersion }}
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          # limits is greater than or equal to requests
-          limits:
-            cpu: 100m
-            memory: 128Mi
-        volumeMounts:
-            - name: nginx-conf
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
-              readOnly: true
-      volumes:
-      - name: nginx-conf
-        configMap:
-          name: frontend
-          items:
-            - key: nginx.conf
-              path: nginx.conf
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: web
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 75
