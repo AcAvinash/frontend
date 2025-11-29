@@ -7,11 +7,11 @@ metadata:
         alb.ingress.kubernetes.io/scheme: internet-facing
         alb.ingress.kubernetes.io/target-type: ip
         alb.ingress.kubernetes.io/tags: Environment=dev,Project=expense
-        alb.ingress.kubernetes.io/group.name: joindevops
+        alb.ingress.kubernetes.io/group.name: acavinash
 spec:
   ingressClassName: alb
   rules:
-  - host: "expense.joindevops.fun"
+  - host: "expense.acavinash.fun"
     http:
       paths:
       - path: /
